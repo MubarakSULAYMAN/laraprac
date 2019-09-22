@@ -59,14 +59,14 @@
 
                                                     {{-- @foreach  --}}
                                                     <tr>
-                                                        <th scope="row"> ->id }} </th>
-                                                        <td> ->first_name }} </td>
-                                                        <td> ->last_name }} </td>
-                                                        <td> ->email }} </td>
-                                                        <td> ->phone_number }} </td>
-                                                        <td> ->company }} </td>
+                                                        <th scope="row"> {{$employee->id }} </th>
+                                                        <td> {{$employee->first_name }} </td>
+                                                        <td> {{$employee->last_name }} </td>
+                                                        <td> {{$employee->email }} </td>
+                                                        <td> {{$employee->phone_number }} </td>
+                                                        <td> {{$employee->company }} </td>
                                                         <td>
-                                                            <button type="button" href="" class="btn btn-light"> Edit
+                                                            <button type="button" onclick="window.location='{{ url("employee/edit", $employee->name) }}'" class="btn btn-light"> Edit
                                                             </button>
                                                             <button type="button" href="" class="btn btn-danger"> Delete
                                                             </button>

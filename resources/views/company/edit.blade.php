@@ -10,7 +10,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <p> Edit <b> {{ $data->company_name }} </b> Company </p>
+                    <p> Edit <b> {{ $data->company_name }} </b> Company Profile </p>
                 </div>
 
                 @if (session('status'))
