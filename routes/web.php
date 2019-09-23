@@ -21,11 +21,15 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 // Route::resource('companies', 'CompanyController');
 
-// Route::middleware(['Auth', 'auth'])->group(function () {
-Route::middleware('auth')->group(function () {
-//     Route::get('/employee', 'EmployeeController@index');
-//     Route::post('/create_employee', 'EmployeeController@create');
-//     Route::put('/edit_employee_details', 'EmployeeController@edit');
+Route::middleware(['auth'])->group(function() {
+    // Route::group(['middleware' => ['auth', 'can:superAdmin']], function(){
+
+    Route::get('/employees', 'EmployeeController@index');
+    Route::get('employee/create', 'EmployeeController@create');
+    Route::post('employee/save', 'EmployeeController@save');
+    Route::put('employee/edit/{first_name .last_name ._ .id}', 'EmployeeController@edit');
+    // Route::get('employee/edit/{first_name}.{_}.{last_name}.{_}.{id}', 'EmployeeController@edit');
+    
 //     Route::put('/delete_employee', 'EmployeeController@delete');
 //     Route::get('/employee_details', 'EmployeeController@detail');
 
@@ -36,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('companies', 'CompanyController@index');
     Route::get('company/create', 'CompanyController@create');
     Route::post('company/save', 'CompanyController@save');
-    Route::get('company/edit/{name}', 'CompanyController@edit');
+    Route::put('company/edit/{name}', 'CompanyController@edit');
     Route::post('company/update/{name}', 'CompanyController@update');
-    Route::post('company/delete/{name}', 'CompanyController@delete');
+    Route::delete('company/delete/{name}', 'CompanyController@delete');
 });

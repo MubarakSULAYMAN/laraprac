@@ -57,33 +57,33 @@
                         <div class="row py-2">
                             <div class="col-md-5">
                                 <strong> Email </strong>
-                                <input type="email" name="email"
-                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                    value="{{ old('email') }}" placeholder="mail@emailprovider.domain">
+                                <input type="text" name="company_email"
+                                    class="form-control{{ $errors->has('company_email') ? ' is-invalid' : '' }}"
+                                    value="{{ old('company_email') }}" placeholder="mail@emailprovider.domain">
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('company_email'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <strong>{{ $errors->first('company_email') }}</strong>
                                 </span>
                                 @endif
                             </div>
 
                             <div class="col-md-3">
                                 <strong> Logo </strong>
-                                <input type="file" name="logo_image"
-                                    class="form-control{{ $errors->has('logo_image') ? ' is-invalid' : '' }}"
-                                    value="{{ old('logo_image') }}">
+                                <input type="file" name="image_logo"
+                                    class="form-control{{ $errors->has('image_logo') ? ' is-invalid' : '' }}"
+                                    value="{{ old('image_logo') }}">
 
-                                @if ($errors->has('logo_image'))
+                                @if ($errors->has('image_logo'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('logo_image') }}</strong>
+                                    <strong>{{ $errors->first('image_logo') }}</strong>
                                 </span>
                                 @endif
                             </div>
 
                             <div class="col-md-4">
                                 <strong> Website </strong>
-                                <input type="url" name="website"
+                                <input type="text" name="website"
                                     class="form-control{{ $errors->has('website') ? ' is-invalid' : '' }}"
                                     value="{{ old('website') }}" placeholder="www.websiteurl.domain">
 
@@ -120,5 +120,7 @@
 
     </div>
 </div>
+
+<p> Wants to be in <a href="{{ url('employee/create') }}"> create employee </a> ? </p>
 
 @endsection

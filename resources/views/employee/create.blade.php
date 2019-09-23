@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add New Company')
+@section('title', 'Add New Employee')
 
 @section('content')
 
@@ -30,7 +30,7 @@
                                 <strong> First Name </strong>
                                 <input type="text" name="first_name"
                                     class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
-                                    value="{{ old('first_name') }}" placeholder="FirstName" required autofocus>
+                                    value="{{ old('first_name') }}" placeholder="FirstName" autofocus>
 
                                 @if ($errors->has('first_name'))
                                 <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                                 <strong> Last Name </strong>
                                 <input type="text" name="last_name"
                                     class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
-                                    value="{{ old('last_name') }}" placeholder="LastName" required>
+                                    value="{{ old('last_name') }}" placeholder="LastName">
 
                                 @if ($errors->has('last_name'))
                                 <span class="invalid-feedback" role="alert">
@@ -56,13 +56,13 @@
                         <div class="row py-2">
                             <div class="col-md-6">
                                 <strong> Email </strong>
-                                <input type="email" name="email"
-                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                    value="{{ old('email') }}" placeholder="mail@emailprovider.domain" required>
+                                <input type="text" name="employee_email "
+                                    class="form-control{{ $errors->has('employee_email ') ? ' is-invalid' : '' }}"
+                                    value="{{ old('employee_email ') }}" placeholder="mail@emailprovider.domain">
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('employee_email '))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <strong>{{ $errors->first('employee_email ') }}</strong>
                                 </span>
                                 @endif
                             </div>
@@ -71,7 +71,7 @@
                                 <strong> Phone Number </strong>
                                 <input type="number" name="phone_number"
                                     class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}"
-                                    value="{{ old('phone_number') }}" placeholder="+234815679000" required>
+                                    value="{{ old('phone_number') }}" placeholder="+234815679000">
 
                                 @if ($errors->has('phone_number'))
                                 <span class="invalid-feedback" role="alert">
@@ -85,11 +85,11 @@
                             <div class="col-md-6">
                                 <strong> Company </strong>
                                 <select class="form-control{{ $errors->has('company_name') ? ' is-invalid' : '' }}"
-                                    name="company_name" value="{{ old('company_name') }}" required>
+                                    name="company_name" value="{{ old('company_name') }}">
                                     <option value=""> Select Company </option>
 
                                     @foreach($companies as $company)
-                                    <option value=" {{ $company->id }} "> {{ $company->company_name }} </option>
+                                    <option value=" {{ $company->id }} "> {{ $company->name }} </option>
                                     @endforeach
                                 </select>
 
@@ -101,17 +101,13 @@
                             </div>
 
                             <div class="col-md-6" style="margin-top:2%;">
-                                <div class="col-md-4">
-
-                                </div>
                                 <button type="button" onclick="window.location='{{ url("employees") }}'" class="btn btn-success"> Back
                                 </button>
 
                                 <button type="submit" class="btn btn-primary"> Save
                                 </button>
-                            </div>
-                            <div class="col-md-4">
 
+                                <input type="hidden" name="_token" value="{{ Session::token() }}">
                             </div>
                         </div>
                     </form>
@@ -122,5 +118,7 @@
 
     </div>
 </div>
+
+<p> Wants to be in <a href="{{ url('company/create') }}"> create companies </a> ? </p>
 
 @endsection

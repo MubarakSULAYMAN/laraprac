@@ -26,8 +26,8 @@ class CreateCompanyRequest extends FormRequest
         return [
             'name' => 'required|min:5',
             'address' => 'required|min:5',
-            'email' => 'required|email',
-            'logo_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:204',
+            'company_email' => 'required|email',
+            'image_logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:204',
             'website' => 'required|url',
         ];
     }

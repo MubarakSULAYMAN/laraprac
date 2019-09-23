@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             ['name' =>"Touchcore Admin",
             'email' => "admin@admin.com",
-            'password' => Hash::make('password')],
-            // 'role' => '1'],
+            'password' => Hash::make('password'),
+            'role' => "superAdmin"],
         ]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add New Company')
+@section('title', 'Registered Companis Details')
 
 @section('content')
 
@@ -64,7 +64,7 @@
                                         <td> {{$company->name }} </td>
                                         <td> {{$company->address }} </td>
                                         <td> {{$company->website }} </td>
-                                        <td> {{$company->email }} </td>
+                                        <td> {{$company->company_email}} </td>
                                         <td>
                                             <button type="button"
                                                 onclick="window.location='{{ url("company/edit", $company->name) }}'"
@@ -101,7 +101,7 @@
 
     </div>
 </div>
-</div>
 
+<p> Wants to be in <a href="{{ url('employees') }}"> employees </a> ? </p>
 
 @endsection

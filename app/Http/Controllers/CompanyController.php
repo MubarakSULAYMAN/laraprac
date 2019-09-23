@@ -33,7 +33,7 @@ class CompanyController extends Controller
     //     // Form validation
     //     $request->validate([
     //         'name'              =>  'required',
-    //         'logo_image'     =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+    //         'image_logo'     =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048'
     //     ]);
 
     //     // // Get current user
@@ -42,9 +42,9 @@ class CompanyController extends Controller
     //     // $user->name = $request->input('name');
 
     //     // // Check if a profile image has been uploaded
-    //     // if ($request->has('logo_image')) {
+    //     // if ($request->has('image_logo')) {
     //     //     // Get image file
-    //     //     $image = $request->file('logo_image');
+    //     //     $image = $request->file('image_logo');
     //     //     // Make a image name based on user name and current timestamp
     //     //     $name = str_slug($request->input('name')).'_'.time();
     //     //     // Define folder path
@@ -54,7 +54,7 @@ class CompanyController extends Controller
     //     //     // Upload image
     //     //     $this->uploadOne($image, $folder, 'public', $name);
     //     //     // Set user profile image path in database to filePath
-    //     //     $user->logo_image = $filePath;
+    //     //     $user->image_logo = $filePath;
     //     // }
     //     // // Persist user record to database
     //     // $user->save();
@@ -67,20 +67,20 @@ class CompanyController extends Controller
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'address' => 'required',
-            'email' => 'required',
-            'logo_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'website' => 'required',
+            'name' => 'required|Regex:/^[\D]+$/i|min:2',
+            'address' => 'required|Regex:/^[\D]+$/i|min:15',
+            'company_email' => 'sometimes|required|email|between:7,60',
+            'image_logo' => 'required|image|dimensions:min_width=100,min_height=200|max:2048',
+            'website' => 'required|url|min:9',
         ]);
 
-        $logo_image = '';
+        $image_logo = '';
         
         Company::create([
             'name' => $request->name,
             'address' => $request->address,
-            'email' => $request->email,
-            'logo_image' => $logo_image,
+            'company_email' => $request->company_email,
+            'image_logo' => $image_logo,
             'website' => $request->website,
         ]);
 
@@ -97,11 +97,11 @@ class CompanyController extends Controller
     public function update(Request $request, $name)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'address' => 'required|max:255',
-            'email' => 'required|max:255',
-            'logo_image' => 'required|mime',
-            'website' => 'required|url|max:255',
+            'name' => 'required|Regex:/^[\D]+$/i|min:2',
+            'address' => 'required|Regex:/^[\D]+$/i|min:15',
+            'company_email' => 'sometimes|required|email|between:7,60',
+            'image_logo' => 'required|image|dimensions:min_width=100,min_height=200|max:2048',
+            'website' => 'required|url|min:9',
         ]);
 
         $data = Company::findOrFail($name);
@@ -121,6 +121,6 @@ class CompanyController extends Controller
         $data = Company::findOrFail($name);
         $data->delete();
 
-        return redirect()->back()->with('status', 'You just deleted a company.');
+        return redirect()->back()->with('status', 'You just deleted a company detail.');
     }
 }
