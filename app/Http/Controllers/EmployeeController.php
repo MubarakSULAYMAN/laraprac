@@ -31,22 +31,22 @@ class EmployeeController extends Controller
         return view('employee.create', compact('datas', 'details', 'companies'));
     }
 
-    public function save(Request $request)
+    public function save(Request $detail)
     {
-        $this->validate($request, [
+        $this->validate($detail, [
             'first_name' => 'required|Regex:/^[\D]+$/i|min:2',
             'last_name' => 'required|Regex:/^[\D]+$/i|min:2',
             'company' => 'required|Regex:/^[\D]+$/i|between:19,70',
-            'employee_email ' => 'sometimes|required|email|between:7,60',
+            'employee_email' => 'sometimes|required|email|between:7,60',
             'phone_number' => 'required|regex:/(+)[0-9]{14}/',
         ]);
         
         Employee::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'company' => $request->company,
-            'employee_email ' => $request->employee_email ,
-            'phone_number' => $request->phone_number,
+            'first_name' => $detail->first_name,
+            'last_name' => $detail->last_name,
+            'company' => $detail->company,
+            'employee_email' => $detail->employee_email ,
+            'phone_number' => $detail->phone_number,
         ]);
 
         return redirect()->back()->with('status', 'Employee successfully created.');
@@ -60,20 +60,20 @@ class EmployeeController extends Controller
         return view('employee.edit', compact('employee', 'companies'));
     }
 
-    public function update(Request $request, $first_name, $last_name, $id)
+    public function update(Request $detail, $first_name, $last_name, $id)
     {
-        $this->validate($request, [
+        $this->validate($detail, [
             'first_name' => 'required|Regex:/^[\D]+$/i|min:2',
             'last_name' => 'required|Regex:/^[\D]+$/i|min:2',
             'company' => 'required|Regex:/^[\D]+$/i|between:19,70',
-            'employee_email ' => 'sometimes|required|email|between:7,60',
+            'employee_email' => 'sometimes|required|email|between:7,60',
             'phone_number' => 'required|regex:/(+)[0-9]{14}/',
         ]);
 
         $detail = Employee::findOrFail($first_name .'_' .$last_name .'_' .$id);
         $data = Company::all();
 
-        $detail->$data->update($request->all());
+        $detail->$data->update($detail->all());
 
         return redirect()->back()->with('success', 'Employee is successfully updated.');
     }
