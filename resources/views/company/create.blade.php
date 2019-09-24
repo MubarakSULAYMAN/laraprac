@@ -24,6 +24,8 @@
                     <form action="{{ url('company/save') }}" method="POST" role="form" enctype="multipart/form-data">
 
                         @csrf
+                        
+                        <input type="hidden" name="token" value="{{ Session::token() }}">
 
                         <div class="row">
                             <div class="col-md-6">
@@ -100,13 +102,9 @@
 
                             </div>
                             <div class="col-md-4">
-                                <button type="button" onclick="window.location='{{ url("companies") }}'"
-                                    class="btn btn-success"> Back </button>
+                                <button type="button" onclick="window.location='{{ url("companies") }}'" class="btn btn-success"> Back </button>
 
-                                <button type="submit" class="btn btn-primary"> Save
-                                </button>
-
-                                <input type="hidden" name="_token" value="{{ Session::token() }}">
+                                <button type="submit" class="btn btn-primary"> Save </button>
                             </div>
                             <div class="col-md-4">
 
@@ -121,6 +119,6 @@
     </div>
 </div>
 
-<p> Wants to be in <a href="{{ url('employee/create') }}"> create employee </a> ? </p>
+<p> Wants to be in <a href="{{ url('employee/create') }}"> create employee </a> or <a href="{{ url('/') }}"> home </a> ? </p>
 
 @endsection

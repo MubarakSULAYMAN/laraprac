@@ -25,6 +25,8 @@
 
                         @csrf
 
+                        <input type="hidden" name="token" value="{{ Session::token() }}">
+
                         <div class="row">
                             <div class="col-md-6">
                                 <strong> First Name </strong>
@@ -123,6 +125,6 @@
     </div>
 </div>
 
-<p> Wants to be in <a href="{{ url('employee/edit/{name}') }}"> edit employees </a> ? </p>
+<p> Wants to be in <a href="{{ url('employee/edit/{name}') }}"> edit employees </a> or <a href="{{ url('/') }}"> home </a> ? </p>
 
 @endsection

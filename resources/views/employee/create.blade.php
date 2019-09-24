@@ -21,9 +21,11 @@
 
                 <div class="card-body">
 
-                    <form action="{{ url('employee/create') }}" method="POST" role="form" enctype="multipart/form-data">
+                    <form action="{{ url('employee/save') }}" method="POST" role="form" enctype="multipart/form-data">
 
                         @csrf
+                        
+                        <input type="hidden" name="token" value="{{ Session::token() }}">
 
                         <div class="row">
                             <div class="col-md-6">
@@ -69,7 +71,7 @@
 
                             <div class="col-md-6">
                                 <strong> Phone Number </strong>
-                                <input type="number" name="phone_number"
+                                <input type="tel" name="phone_number"
                                     class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}"
                                     value="{{ old('phone_number') }}" placeholder="+234815679000">
 
@@ -101,13 +103,9 @@
                             </div>
 
                             <div class="col-md-6" style="margin-top:2%;">
-                                <button type="button" onclick="window.location='{{ url("employees") }}'" class="btn btn-success"> Back
-                                </button>
+                                <button type="button" onclick="window.location='{{ url("../") }}'" class="btn btn-success"> Back </button>
 
-                                <button type="submit" class="btn btn-primary"> Save
-                                </button>
-
-                                <input type="hidden" name="_token" value="{{ Session::token() }}">
+                                <button type="submit" class="btn btn-primary"> Save </button>
                             </div>
                         </div>
                     </form>
@@ -119,6 +117,6 @@
     </div>
 </div>
 
-<p> Wants to be in <a href="{{ url('company/create') }}"> create companies </a> ? </p>
+<p> Wants to be in <a href="{{ url('company/create') }}"> create companies </a> or <a href="{{ url('/') }}"> home </a> ? </p>
 
 @endsection

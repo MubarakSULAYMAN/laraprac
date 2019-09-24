@@ -14,8 +14,7 @@
                 </div>
 
                 <div class="card-body">
-                    <button type="button" onclick="window.location='{{ url("employee/create") }}'"
-                        class="btn btn-success"> Create new
+                    <button onclick="window.location='{{ url("employee/create") }}'" class="btn btn-success"> Create new
                         employee </button>
                 </div>
 
@@ -30,6 +29,10 @@
 
                             <div class="table-responsive">
                                 <table class="table table-sm table-striped table-hover table-bordered">
+
+
+                                    <input type="hidden" name="token" value="{{ Session::token() }}">
+
                                     <thead>
                                         <tr>
                                             <th scope="col" width="20px"> No </th>
@@ -53,13 +56,12 @@
                                             <td> {{$employee->phone_number }} </td>
                                             <td> {{$employee->company }} </td>
                                             <td>
-                                                <button type="button"
-                                                    onclick="window.location='{{ url("employee/edit") }}'"
+                                                <button onclick="window.location='{{ url("employee/edit") }}'"
                                                     class="btn btn-light"> Edit
-                                                    {{-- <button type="button" onclick="window.location='{{ url("employee/edit", $employee->$first_name .'_' .$last_name .'_' .$id) }}'"
+                                                    {{-- <button onclick="window.location='{{ url("employee/edit", $employee->$first_name .'_' .$last_name .'_' .$id) }}'"
                                                     class="btn btn-light"> Edit --}}
                                                 </button>
-                                                <button type="button" href="" class="btn btn-danger"> Delete
+                                                <button href="" class="btn btn-danger"> Delete
                                                 </button>
                                             </td>
                                         </tr>
@@ -80,6 +82,6 @@
     </div>
 </div>
 
-<p> Wants to be in <a href="{{ url('companies') }}"> companies </a> ? </p>
+<p> Wants to be in <a href="{{ url('companies') }}"> companies </a> or <a href="{{ url('/') }}"> home </a> ? </p>
 
 @endsection
