@@ -77,7 +77,7 @@
                                                     @csrf 
                                                     @method('DELETE')
                                             
-                                                        <input type="submit" class="btn btn-danger" value="Delete" onClick="return confirm('Are you sure you want to delete this? Changes are irreversible.')" >
+                                                    <input type="submit" class="btn btn-danger" value="Delete" onClick="return confirm('Are you sure you want to delete this? Changes are irreversible.')" >
                                                 </form>
 
 

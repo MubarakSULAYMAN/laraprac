@@ -31,10 +31,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('employees', 'EmployeeController@index');
     Route::get('employee/create', 'EmployeeController@create');
     Route::post('employee/save', 'EmployeeController@save');
-    Route::put('employee/edit/{name}', 'EmployeeController@edit');
-    Route::post('employee/update/{name}', 'EmployeeController@update');
-    Route::delete('employee/delete/{name}', 'EmployeeController@delete');
-        
-    // Route::put('employee/edit/{first_name .last_name ._ .id}', 'EmployeeController@edit');
+    Route::get('employee/edit/{id}', 'EmployeeController@edit');
+    Route::post('employee/update/{id}', 'EmployeeController@update');
+    Route::delete('employee/delete/{id}', 'EmployeeController@delete');
     
 });

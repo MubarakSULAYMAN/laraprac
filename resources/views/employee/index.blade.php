@@ -56,13 +56,18 @@
                                             <td> {{$employee->phone_number }} </td>
                                             <td> {{$employee->company }} </td>
                                             <td>
-                                                <button onclick="window.location='{{ url("employee/edit") }}'"
+                                                <button
+                                                    onclick="window.location='{{ url("employee/edit", $employee->id) }}'"
                                                     class="btn btn-light"> Edit
-                                                    {{-- <button onclick="window.location='{{ url("employee/edit", $employee->$first_name .'_' .$last_name .'_' .$id) }}'"
-                                                    class="btn btn-light"> Edit --}}
                                                 </button>
-                                                <button href="" class="btn btn-danger"> Delete
-                                                </button>
+
+                                                <form class="btn" method="POST" action="employee/delete/{{$employee->id }}">
+
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <input type="submit" class="btn btn-danger" value="Delete" onClick="return confirm('Are you sure you want to delete this? Changes are irreversible.')">
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

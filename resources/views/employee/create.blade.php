@@ -24,7 +24,7 @@
                     <form action="{{ url('employee/save') }}" method="POST" role="form" enctype="multipart/form-data">
 
                         @csrf
-                        
+
                         <input type="hidden" name="token" value="{{ Session::token() }}">
 
                         <div class="row">
@@ -58,7 +58,7 @@
                         <div class="row py-2">
                             <div class="col-md-6">
                                 <strong> Email </strong>
-                                <input type="text" name="employee_email "
+                                <input type="text" name="employee_email"
                                     class="form-control{{ $errors->has('employee_email') ? ' is-invalid' : '' }}"
                                     value="{{ old('employee_email') }}" placeholder="mail@emailprovider.domain">
 
@@ -91,7 +91,7 @@
                                     <option value=""> Select Company </option>
 
                                     @foreach($companies as $company)
-                                    <option value=" {{ $company->id }} "> {{ $company->name }} </option>
+                                    <option value=" {{ $company->name }} "> {{ $company->name }} </option>
                                     @endforeach
                                 </select>
 
@@ -103,9 +103,10 @@
                             </div>
 
                             <div class="col-md-6" style="margin-top:2%;">
-                                    <button type="button" onclick="window.location='{{ url("employees") }}'" class="btn btn-success"> Back </button>
+                                <button type="button" onclick="window.location='{{ url("employees") }}'"
+                                    class="btn btn-success"> Back </button>
 
-                                    <button type="submit" class="btn btn-primary"> Save </button>
+                                <button type="submit" class="btn btn-primary"> Save </button>
                             </div>
                         </div>
                     </form>
@@ -117,6 +118,7 @@
     </div>
 </div>
 
-<p> Wants to be in <a href="{{ url('company/create') }}"> create companies </a> or <a href="{{ url('/') }}"> home </a> ? </p>
+<p> Wants to be in <a href="{{ url('company/create') }}"> create companies </a> or <a href="{{ url('/') }}"> home </a> ?
+</p>
 
 @endsection

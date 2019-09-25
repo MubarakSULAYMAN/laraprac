@@ -30,7 +30,7 @@ class EmployeeController extends Controller
             'first_name' => 'required|Regex:/^[\D]+$/i|min:2',
             'last_name' => 'required|Regex:/^[\D]+$/i|min:2',
             'company' => 'required',
-            'employee_email' => 'required|email_address|between:6,60|unique:employees',
+            'employee_email' => 'email|between:6,60|unique:employees',
             'phone_number' => 'required|regex:/^\+[0-9]{14}/',
         ]);
         
@@ -38,22 +38,25 @@ class EmployeeController extends Controller
             'first_name' => $detail->first_name,
             'last_name' => $detail->last_name,
             'company' => $detail->company,
-            'employee_email' => $detail->employee_email ,
+            'employee_email' => $detail->employee_email,
             'phone_number' => $detail->phone_number,
         ]);
 
         return redirect()->back()->with('status', 'Employee successfully created.');
     }
 
-    public function edit($first_name, $last_name, $id)
+    public function edit($id)
     {
-        $detail = Employee::find($first_name.$last_name.$id);
+        $detail = Employee::find($id);
+        // $detail = Employee::all();
         $companies = Company::all();
+
+        // dd($detail, $companies);
 
         return view('employee.edit', compact('detail', 'companies'));
     }
 
-    public function update(Request $detail, $first_name, $last_name, $id)
+    public function update(Request $detail, $id)
     {
         $this->validate($detail, [
             'first_name' => 'required|Regex:/^[\D]+$/i|min:2',
@@ -63,17 +66,17 @@ class EmployeeController extends Controller
             'phone_number' => 'required|regex:/^\+[0-9]{14}/',
         ]);
 
-        $detail = Employee::find($first_name.$last_name.$id);
+        $detail = Employee::find($id);
         $data = Company::all();
 
         $detail->$data->update($detail->all());
 
-        return redirect()->back()->with('success', 'Employee is successfully updated.');
+        return redirect()->back()->with('status', 'Employee is successfully updated.');
     }
 
-    public function delete($first_name, $last_name, $id)
+    public function delete($id)
     {
-        $detail = Employee::find($first_name.$last_name.$id);
+        $detail = Employee::find($id);
         $detail->delete();
 
         return redirect()->back()->with('status', 'You just deleted an employee detail.');
