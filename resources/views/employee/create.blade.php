@@ -59,12 +59,12 @@
                             <div class="col-md-6">
                                 <strong> Email </strong>
                                 <input type="text" name="employee_email "
-                                    class="form-control{{ $errors->has('employee_email ') ? ' is-invalid' : '' }}"
-                                    value="{{ old('employee_email ') }}" placeholder="mail@emailprovider.domain">
+                                    class="form-control{{ $errors->has('employee_email') ? ' is-invalid' : '' }}"
+                                    value="{{ old('employee_email') }}" placeholder="mail@emailprovider.domain">
 
-                                @if ($errors->has('employee_email '))
+                                @if ($errors->has('employee_email'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('employee_email ') }}</strong>
+                                    <strong>{{ $errors->first('employee_email') }}</strong>
                                 </span>
                                 @endif
                             </div>
@@ -86,8 +86,8 @@
                         <div class="row py-2">
                             <div class="col-md-6">
                                 <strong> Company </strong>
-                                <select class="form-control{{ $errors->has('company_name') ? ' is-invalid' : '' }}"
-                                    name="company_name" value="{{ old('company_name') }}">
+                                <select class="form-control{{ $errors->has('company') ? ' is-invalid' : '' }}"
+                                    name="company" value="{{ old('company') }}">
                                     <option value=""> Select Company </option>
 
                                     @foreach($companies as $company)
@@ -95,17 +95,17 @@
                                     @endforeach
                                 </select>
 
-                                @if ($errors->has('company_name'))
+                                @if ($errors->has('company'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('company_name') }}</strong>
+                                    <strong>{{ $errors->first('company') }}</strong>
                                 </span>
                                 @endif
                             </div>
 
                             <div class="col-md-6" style="margin-top:2%;">
-                                <button type="button" onclick="window.location='{{ url("../") }}'" class="btn btn-success"> Back </button>
+                                    <button type="button" onclick="window.location='{{ url("employees") }}'" class="btn btn-success"> Back </button>
 
-                                <button type="submit" class="btn btn-primary"> Save </button>
+                                    <button type="submit" class="btn btn-primary"> Save </button>
                             </div>
                         </div>
                     </form>

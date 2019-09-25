@@ -47,7 +47,6 @@ class CompanyController extends Controller
 
     public function edit($name)
     {
-        Company:
         $data = Company::all();
         $data = $data->where("name", "==", $name)->first();
         return view('company.edit', compact('data'));
@@ -63,13 +62,13 @@ class CompanyController extends Controller
             'website' => 'required|url|min:9',
         ]);
 
-        Company:
         $data = Company::all();
-        $data = $data->where("name", "==", $name)->first();
-
+        $data = $data->where("id", "==", $name)->first();
+        // dd($data);
+        // $data->update($name);
         $data->update($request->all());
 
-        return redirect()->back()->with('success', 'Company is successfully updated.');
+        return redirect()->back()->with('status', 'Company is successfully updated.');
     }
 
     // public function detail($name)
@@ -79,9 +78,9 @@ class CompanyController extends Controller
 
     public function delete($name)
     {
-        Company:
-        $data = Company::all();
-        $data = $data->where("name", "==", $name)->first();
+        $user = Company::all();
+        $data = $user->where("name", "==", $name)->first();
+        $data->delete();
 
         return redirect()->back()->with('status', 'You just deleted a company detail.');
     }

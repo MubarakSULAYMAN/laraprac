@@ -72,14 +72,17 @@
                                                     class="btn btn-light"> Edit
                                                 </button>
 
-                                                {{-- @method('DELETE') --}}
+                                                <form class="btn" method="POST" action="company/delete/{{$company->name }}">
+                                                    
+                                                    @csrf 
+                                                    @method('DELETE')
+                                            
+                                                        <input type="submit" class="btn btn-danger" value="Delete" onClick="return confirm('Are you sure you want to delete this? Changes are irreversible.')" >
+                                                </form>
 
-                                                <button 
-                                                onClick="{{ url('company/delete', $company->name) }}"
-                                                    class="btn btn-danger" 
-                                                    {{-- onClick="return confirm('Are you sure you want to delete this? Changes are irreversible.') " --}}
-                                                    > Delete
-                                                </button>
+
+                                                {{-- <button method="DELETE" type="submit" formaction="company/delete/{{$company->name }}" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete this? Changes are irreversible.') " > Delete </button> --}}
+
                                             </td>
                                         </tr>
                                         @endforeach
