@@ -6,7 +6,7 @@ $host = $port = $username = $password = $database = '';
 if(getenv("postgresql-fluffy-24732")){
     $url = parse_url(getenv("https://data.heroku.com/datastores/074c9ff3-b38d-4e4d-8b62-cd752a601789"));
     $host = $url["ec2-50-19-95-77.compute-1.amazonaws.com"];
-    $post = $url["3307"];
+    $post = $url["5432"];
     $username = $url["eafxaqxpfpzkdq"];
     $password = $url["2de24df74c5c9fe0dc45af4575251d488d1a7a33f8410eda40aa160ccd9bde39"];
     $database = substr($url["path"], 1);
