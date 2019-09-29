@@ -31,7 +31,7 @@ class EmployeeController extends Controller
             'last_name' => 'required|Regex:/^[\D]+$/i|min:2',
             'company' => 'required',
             'employee_email' => 'email|between:6,60|unique:employees',
-            'phone_number' => 'required|regex:/\+/|unique:employees,phone',
+            'phone_number' => 'required|regex:/\+/|unique:employees',
         ]);
         
         Employee::create([
